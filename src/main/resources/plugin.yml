@@ -1,0 +1,15 @@
+name: ST-ArmorStandManager
+main: net.starly.armorstandmanager.ArmorStandPlugin
+author: Starly Team
+website: http://starly.kr/
+
+description: KillPoint Plugin.
+
+softdepend: [ ST-Point ]
+
+version: 1.0
+api-version: 1.19
+
+commands:
+  아머스탠드명령어:
+  아머스탠드메시지:
