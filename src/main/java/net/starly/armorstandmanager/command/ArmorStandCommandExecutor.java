@@ -1,6 +1,7 @@
 package net.starly.armorstandmanager.command;
 
-import org.bukkit.ChatColor;
+import net.starly.armorstandmanager.context.MessageType;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
@@ -29,8 +30,9 @@ public class ArmorStandCommandExecutor extends ArmorStandExecutor {
         }
 
         manager.setCommand(armorStand, existingCommands);
-        player.sendMessage(ChatColor.GREEN + "커맨드를 등록하였습니다!");
-
+        player.sendMessage(content.getMessagesAfterPrefix(MessageType.NORMAL, "registerArmorStandCommand")
+                .replace("{command}", command));
+        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1F, 1F);
         return true;
     }
 }

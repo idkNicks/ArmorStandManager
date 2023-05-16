@@ -1,6 +1,6 @@
 package net.starly.armorstandmanager.listener;
 
-import net.starly.armorstandmanager.manager.ArmorStandCommandManager;
+import net.starly.armorstandmanager.manager.ArmorStandManager;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,7 +12,7 @@ public class ArmorStandBreakListener implements Listener {
     public void onArmorStandBreak(EntityDeathEvent event) {
         if (event.getEntity() instanceof ArmorStand) {
             ArmorStand armorStand = (ArmorStand) event.getEntity();
-            ArmorStandCommandManager manager = ArmorStandCommandManager.getInstance();
+            ArmorStandManager manager = ArmorStandManager.getInstance();
 
             if (manager.containsCommand(armorStand)) manager.removeCommand(armorStand);
             if (manager.containsMessage(armorStand)) manager.removeMessage(armorStand);

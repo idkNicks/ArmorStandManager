@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class ArmorStandCommandManager {
+public class ArmorStandManager {
 
-    private static ArmorStandCommandManager instance;
+    private static ArmorStandManager instance;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Map<UUID, List<String>> armorStandCommands = new HashMap<>();
     private final Map<UUID, List<String>> armorStandMessages = new HashMap<>();
     private final File dataFile;
 
-    private ArmorStandCommandManager() {
+    private ArmorStandManager() {
         dataFile = new File(ArmorStandPlugin.getInstance().getDataFolder(), "armorstand_data.json");
 
         if (!dataFile.exists()) {
@@ -38,8 +38,8 @@ public class ArmorStandCommandManager {
         load();
     }
 
-    public static ArmorStandCommandManager getInstance() {
-        if (instance == null) instance = new ArmorStandCommandManager();
+    public static ArmorStandManager getInstance() {
+        if (instance == null) instance = new ArmorStandManager();
         return instance;
     }
 

@@ -2,21 +2,23 @@ package net.starly.armorstandmanager;
 
 import lombok.Getter;
 import net.starly.armorstandmanager.command.ArmorStandCommandExecutor;
+import net.starly.armorstandmanager.command.ArmorStandManagerExecutor;
 import net.starly.armorstandmanager.command.ArmorStandMessageExecutor;
 import net.starly.armorstandmanager.command.tabcomplete.ArmorStandCommandTabCompleter;
+import net.starly.armorstandmanager.command.tabcomplete.ArmorStandManagerTabCompleter;
+import net.starly.armorstandmanager.command.tabcomplete.ArmorStandMessageTabCompleter;
+import net.starly.armorstandmanager.context.MessageContent;
 import net.starly.armorstandmanager.listener.ArmorStandBreakListener;
 import net.starly.armorstandmanager.listener.ArmorStandInteractListener;
 import net.starly.armorstandmanager.listener.ArmorStandProximityListener;
-import net.starly.armorstandmanager.manager.ArmorStandCommandManager;
+import net.starly.armorstandmanager.manager.ArmorStandManager;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ArmorStandPlugin extends JavaPlugin {
 
     @Getter private static ArmorStandPlugin instance;
-    @Getter private static String prefix;
-
-    private ArmorStandCommandManager manager;
+    private ArmorStandManager manager;
 
     @Override
     public void onLoad() { this.instance = this; }
@@ -31,13 +33,16 @@ public class ArmorStandPlugin extends JavaPlugin {
         }
 
         saveDefaultConfig();
-        this.prefix = getConfig().getString("messages.prefix");
+        MessageContent.getInstance().initializing(getConfig());
 
-        manager = ArmorStandCommandManager.getInstance();
+        manager = ArmorStandManager.getInstance();
 
+        getCommand("아머스탠드매니저").setExecutor(new ArmorStandManagerExecutor());
+        getCommand("아머스탠드매니저").setTabCompleter(new ArmorStandManagerTabCompleter());
         getCommand("아머스탠드명령어").setExecutor(new ArmorStandCommandExecutor());
         getCommand("아머스탠드명령어").setTabCompleter(new ArmorStandCommandTabCompleter());
         getCommand("아머스탠드메시지").setExecutor(new ArmorStandMessageExecutor());
+        getCommand("아머스탠드메시지").setTabCompleter(new ArmorStandMessageTabCompleter());
 
         getServer().getPluginManager().registerEvents(new ArmorStandInteractListener(), this);
         getServer().getPluginManager().registerEvents(new ArmorStandProximityListener(), this);

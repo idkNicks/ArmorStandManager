@@ -1,6 +1,8 @@
 package net.starly.armorstandmanager.command;
 
+import net.starly.armorstandmanager.context.MessageType;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 
@@ -17,19 +19,20 @@ public class ArmorStandMessageExecutor extends ArmorStandExecutor  {
             commandBuilder.append(arg).append(" ");
         }
 
-        String command = commandBuilder.toString().trim();
+        String message = commandBuilder.toString().trim();
         List<String> existingMessages = manager.getMessages(armorStand);
 
         if (existingMessages != null) {
-            existingMessages.add(command);
+            existingMessages.add(message);
         } else {
             existingMessages = new ArrayList<>();
-            existingMessages.add(command);
+            existingMessages.add(message);
         }
 
         manager.setMessage(armorStand, existingMessages);
-        player.sendMessage(ChatColor.GREEN + "메시지를 등록하였습니다!");
-
+        player.sendMessage(content.getMessagesAfterPrefix(MessageType.NORMAL, "registerArmorStandMessage")
+                .replace("{message}", message));
+        player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1F, 1F);
         return true;
     }
 }

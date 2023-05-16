@@ -5,3 +5,26 @@ messages:
   # (메시지 앞에 붙는) 접두사
   prefix: ' &f아머스탠드 &6| &r'
 
+  # 아머스탠드에 명령어를 등록하였을 때 출력되는 메시지
+  # 등록한 명령어: {command}
+  registerArmorStandCommand: '&6{command}&f의 명령어를 등록하였습니다.'
+
+  # 아머스탠드에 메시지를 등록하였을 때 출력되는 메시지
+  # 메시지 명령어: {message}
+  registerArmorStandMessage: '&6{message}&f의 메시지를 등록하였습니다.'
+
+  # 콘피그를 리로드하였을 때 출력되는 메시지
+  reloadComplete: '&a콘피그를 리로드하였습니다.'
+
+  # 갑옷 거치대 근처에 들어갔을 때 갑옷거치대와의 범위
+  distance: 3
+
+errorMessages:
+  # 아머스탠드가 근처에 없을 때 출력되는 메시지
+  noArmorStand: '&c아머스탠드가 근처에 없습니다.'
+
+  # 플레이어만 사용할 수 있는 명령어를 사용했을 때 출력되는 메시지
+  noConsole: '&c해당 명령어는 플레이어만 사용할 수 있습니다.'
+
+  # 올바르지 않은 명령어를 사용할 때 출력되는 메시지
+  wrongCommand: '&c올바르지 않은 명령어입니다. 다시 시도해주세요.'

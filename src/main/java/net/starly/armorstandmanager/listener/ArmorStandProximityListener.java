@@ -1,6 +1,8 @@
 package net.starly.armorstandmanager.listener;
 
-import net.starly.armorstandmanager.manager.ArmorStandCommandManager;
+import net.starly.armorstandmanager.context.MessageContent;
+import net.starly.armorstandmanager.context.MessageType;
+import net.starly.armorstandmanager.manager.ArmorStandManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -15,7 +17,7 @@ import java.util.*;
 
 public class ArmorStandProximityListener implements Listener {
 
-    private final ArmorStandCommandManager manager = ArmorStandCommandManager.getInstance();
+    private final ArmorStandManager manager = ArmorStandManager.getInstance();
     private final Map<Player, Set<UUID>> sentMessages = new HashMap<>();
 
     @EventHandler
@@ -29,7 +31,9 @@ public class ArmorStandProximityListener implements Listener {
         Set<UUID> sentMessageSet = sentMessages.getOrDefault(player, new HashSet<>());
         Set<UUID> currentArmorStands = new HashSet<>();
 
-        for (Entity entity : player.getNearbyEntities(3, 3, 3)) {
+        double distance = MessageContent.getInstance().getInt(MessageType.NORMAL, "distance");
+
+        for (Entity entity : player.getNearbyEntities(distance, distance, distance)) {
             if (entity instanceof ArmorStand) {
                 ArmorStand armorStand = (ArmorStand) entity;
                 currentArmorStands.add(armorStand.getUniqueId());
