@@ -1,5 +1,6 @@
 package net.starly.armorstandmanager.listener;
 
+import net.starly.armorstandmanager.ArmorStandPlugin;
 import net.starly.armorstandmanager.context.MessageContent;
 import net.starly.armorstandmanager.context.MessageType;
 import net.starly.armorstandmanager.manager.ArmorStandManager;

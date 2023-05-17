@@ -47,7 +47,6 @@ public class MessageContent {
         });
     }
 
-
     public String getMessage(MessageType type, String key) { return (String) map.get(type).get(key); }
 
     @SuppressWarnings("unchecked")

@@ -124,8 +124,4 @@ public class ArmorStandManager {
     public void removeMessage(ArmorStand armorStand) {
         armorStandMessages.remove(armorStand.getUniqueId());
     }
-
-    public boolean isCommandRegistered(ArmorStand armorStand) {
-        return armorStandCommands.containsKey(armorStand.getUniqueId());
-    }
 }

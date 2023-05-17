@@ -18,7 +18,6 @@ public class ArmorStandManagerExecutor implements CommandExecutor {
 
         MessageContent content = MessageContent.getInstance();
 
-
         if (!(sender instanceof Player player)) {
             sender.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "noConsole"));
             return false;
