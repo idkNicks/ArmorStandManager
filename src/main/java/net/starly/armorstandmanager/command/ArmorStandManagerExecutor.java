@@ -13,12 +13,19 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorStandManagerExecutor implements CommandExecutor {
 
     @Override
+    @SuppressWarnings("all")
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         MessageContent content = MessageContent.getInstance();
 
+
         if (!(sender instanceof Player player)) {
             sender.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "noConsole"));
+            return false;
+        }
+
+        if (!player.isOp()) {
+            player.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "noAdministrator"));
             return false;
         }
 

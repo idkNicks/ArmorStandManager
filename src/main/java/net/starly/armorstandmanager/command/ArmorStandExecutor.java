@@ -25,6 +25,11 @@ public abstract class ArmorStandExecutor implements CommandExecutor {
             return false;
         }
 
+        if (!player.isOp()) {
+            player.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "noAdministrator"));
+            return false;
+        }
+
         if (args.length == 0) {
             player.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "wrongCommand"));
             return false;
