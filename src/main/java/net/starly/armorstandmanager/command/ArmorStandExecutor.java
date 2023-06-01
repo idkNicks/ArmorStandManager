@@ -20,7 +20,9 @@ public abstract class ArmorStandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        Player player = (Player) sender;
+
+        if (!(sender instanceof Player)) {
             sender.sendMessage(content.getMessagesAfterPrefix(MessageType.ERROR, "noConsole"));
             return false;
         }

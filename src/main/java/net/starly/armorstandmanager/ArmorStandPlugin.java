@@ -32,11 +32,13 @@ public class ArmorStandPlugin extends JavaPlugin {
             return;
         }
 
+        // CONFIG
         saveDefaultConfig();
         MessageContent.getInstance().initializing(getConfig());
 
         manager = ArmorStandManager.getInstance();
 
+        // COMMAND
         getCommand("아머스탠드매니저").setExecutor(new ArmorStandManagerExecutor());
         getCommand("아머스탠드매니저").setTabCompleter(new ArmorStandManagerTabCompleter());
         getCommand("아머스탠드명령어").setExecutor(new ArmorStandCommandExecutor());
@@ -44,6 +46,7 @@ public class ArmorStandPlugin extends JavaPlugin {
         getCommand("아머스탠드메시지").setExecutor(new ArmorStandMessageExecutor());
         getCommand("아머스탠드메시지").setTabCompleter(new ArmorStandMessageTabCompleter());
 
+        // LISTENER
         getServer().getPluginManager().registerEvents(new ArmorStandInteractListener(), this);
         getServer().getPluginManager().registerEvents(new ArmorStandProximityListener(), this);
         getServer().getPluginManager().registerEvents(new ArmorStandBreakListener(), this);

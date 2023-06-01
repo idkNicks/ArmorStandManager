@@ -26,7 +26,7 @@ public class MessageContent {
 
     public void initializing(FileConfiguration file) {
         map.clear();
-        Arrays.stream(MessageType.values()).map(values -> new Pair<>(values, file.getConfigurationSection(values.name)))
+        Arrays.stream(MessageType.values()).map(values -> new Pair<>(values, file.getConfigurationSection(values.name())))
                 .forEach(this::initializingMessages);
     }
 

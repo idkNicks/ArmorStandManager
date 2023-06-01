@@ -1,5 +1,8 @@
 package net.starly.armorstandmanager.context;
 
+import lombok.Getter;
+
+@Getter
 public enum MessageType {
 
     NORMAL("messages"),

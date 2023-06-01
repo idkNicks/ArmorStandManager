@@ -20,10 +20,10 @@ public class ArmorStandInteractListener implements Listener {
             List<String> commands = manager.getCommands(armorStand);
 
             if (commands != null) {
-                for (String command : commands) {
+                commands.forEach(command -> {
                     event.setCancelled(true);
                     ArmorStandPlugin.getInstance().getServer().dispatchCommand(event.getPlayer(), command);
-                }
+                });
             }
         }
     }

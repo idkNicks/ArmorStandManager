@@ -1,5 +1,6 @@
 package net.starly.armorstandmanager.command.tabcomplete;
 
+import net.starly.armorstandmanager.ArmorStandPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -17,13 +18,12 @@ public class ArmorStandCommandTabCompleter implements TabCompleter {
         if (!(sender instanceof Player)) return Collections.emptyList();
 
         if (args.length == 1) {
-
             List<String> pluginCommands = getAllPluginCommands();
             List<String> completions = new ArrayList<>();
 
-            for (String pluginCommand : pluginCommands) {
+            pluginCommands.forEach(pluginCommand -> {
                 if (pluginCommand.startsWith(args[0])) completions.add(pluginCommand);
-            }
+            });
             return completions;
         }
         return Collections.emptyList();
@@ -31,15 +31,13 @@ public class ArmorStandCommandTabCompleter implements TabCompleter {
 
     private List<String> getAllPluginCommands() {
         List<String> pluginCommands = new ArrayList<>();
-        Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
+        Plugin[] plugins = ArmorStandPlugin.getInstance().getServer().getPluginManager().getPlugins();
 
         for (Plugin plugin : plugins) {
             Map<String, Map<String, Object>> commands = plugin.getDescription().getCommands();
 
             if (commands != null) {
-                for (String commandName : commands.keySet()) {
-                    pluginCommands.add(plugin.getName() + ":" + commandName);
-                }
+                commands.keySet().forEach(commandName -> pluginCommands.add(plugin.getName() + ":" + commandName));
             }
         }
         return pluginCommands;

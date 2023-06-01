@@ -13,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorStandManagerExecutor implements CommandExecutor {
 
     @Override
-    @SuppressWarnings("all")
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
         MessageContent content = MessageContent.getInstance();
